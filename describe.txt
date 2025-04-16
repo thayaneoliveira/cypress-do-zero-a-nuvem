@@ -162,7 +162,7 @@ esses são os principais comandos do cypress
 
 
     commits
-    O que você fez	Exemplo de mensagem
+   
 Primeiro commit	                        git commit -m "Initial commit"
 Adicionou a estrutura do projeto	    git commit -m "chore: project structure"
 Criou a página de login	                git commit -m "feat: add login page"
