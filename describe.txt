@@ -1,0 +1,170 @@
+ 1** Comandos de Navegação
+cy.visit(url): Visita uma URL específica.
+- cy.visit('https://exemplo.com');
+
+cy.reload(): Recarrega a página atual.
+- cy.reload();
+
+cy.go('back'): Navega para a página anterior no histórico.
+- cy.go('back');
+
+cy.go('forward'): Navega para a próxima página no histórico.
+- cy.go('forward');
+
+cy.location(): Obtém a localização atual da página (URL, hash, etc.).
+- cy.location('href').should('eq', 'https://exemplo.com');
+
+
+2** Comandos de Seleção de Elementos
+cy.get(selector): Obtém um ou mais elementos DOM que correspondem ao seletor fornecido.
+- cy.get('button').click(); // Clica no botão
+
+cy.find(selector): Encontra um elemento dentro de outro elemento já selecionado.
+- cy.get('.menu').find('li').should('have.length', 3);
+
+cy.contains(text): Encontra um elemento que contém o texto especificado.
+- cy.contains('Login').click(); // Clica no botão que contém o texto "Login"
+
+cy.get(selector).first(): Seleciona o primeiro elemento correspondente ao seletor.
+- cy.get('.list-item').first().click();
+
+cy.get(selector).last(): Seleciona o último elemento correspondente ao seletor.
+- cy.get('.list-item').last().click();
+
+cy.get(selector).eq(index): Seleciona um elemento específico baseado no índice.
+- cy.get('.item').eq(2).click(); // Clica no 3º item
+
+
+3*** Comandos de Interação 
+cy.click(): Clica no elemento selecionado.
+- cy.get('button').click();
+
+cy.type(text): Digita texto no elemento selecionado (útil para inputs).
+- cy.get('input[name="username"]').type('testuser');
+
+cy.clear(): Limpa o conteúdo de um campo de entrada (input).
+- cy.get('input[name="username"]').clear();
+
+cy.check(): Marca uma caixa de seleção (checkbox).
+- cy.get('input[type="checkbox"]').check();
+
+cy.uncheck(): Desmarca uma caixa de seleção (checkbox).
+- cy.get('input[type="checkbox"]').uncheck();
+
+cy.select(value): Seleciona uma opção em um campo <select>.
+- cy.get('select').select('Option 1');
+
+cy.scrollTo(position): Rola a página até uma posição específica.
+- cy.scrollTo('bottom'); // Rola até o final da página
+
+cy.hover(): Aciona o evento de hover sobre um elemento.
+- cy.get('button').trigger('mouseover');
+ 
+
+4*** Comandos de Assertivas (Asserções)
+cy.should('assertion'): Faz asserções sobre o estado de um elemento ou da página.
+- cy.get('h1').should('contain', 'Welcome');
+- cy.get('button').should('be.visible');
+
+cy.and('assertion'): Outra forma de fazer asserções.
+- cy.get('button').and('have.class', 'active');
+
+cy.expect(): Uma forma de assertivas, baseada no Chai (biblioteca de asserções do Cypress).
+- expect(true).to.equal(true);
+
+cy.should('exist'): Verifica se o elemento existe no DOM.
+- cy.get('.item').should('exist');
+
+cy.should('not.exist'): Verifica se o elemento não existe no DOM.
+- cy.get('.item').should('not.exist');
+
+cy.should('be.visible'): Verifica se o elemento está visível na página.
+- cy.get('.menu').should('be.visible');
+
+
+5*** Comandos de Espera
+cy.wait(time): Faz o teste esperar por um tempo específico (em milissegundos).
+- cy.wait(1000); // Espera 1 segundo
+
+cy.wait('@alias'): Espera por uma requisição XHR ou fetch ser concluída.
+- cy.wait('@getUser');
+
+cy.pause(): Pausa o teste para inspeção interativa.
+- cy.pause(); // Pausa a execução do teste
+
+cy.tick(ms): Avança o tempo de execução para simular o comportamento de temporizadores.
+- cy.tick(2000); // Avança 2 segundos
+
+
+6*** Comandos de Network (Requisições)
+cy.request(url): Faz uma requisição HTTP (GET, POST, etc.) para a URL especificada.
+- cy.request('GET', '/api/v1/users').its('status').should('eq', 200);
+
+cy.intercept(): Intercepta requisições de rede e permite modificar a resposta ou monitorar a 
+- cy.intercept('GET', '/api/v1/users').as('getUsers');
+
+cy.route(): Define rotas para interceptar as requisições de rede (versão anterior ao cy.intercept).
+- cy.server();
+- cy.route('GET', '/api/v1/users').as('getUsers');
+
+
+7*** Comandos de Manipulação de Arquivos
+cy.fixture(file): Carrega um arquivo de fixture (um arquivo JSON, por exemplo).
+- cy.fixture('userData.json').then((data) => {
+  // Faz algo com o arquivo de fixture
+});
+
+cy.writeFile(file, content): Escreve dados em um arquivo.
+- cy.writeFile('output.txt', 'Hello, Cypress!');
+
+cy.readFile(file): Lê o conteúdo de um arquivo.
+- cy.readFile('output.txt').should('eq', 'Hello, Cypress!');
+
+
+8*** Comandos de Manipulação de Cookies
+cy.setCookie(name, value): Define um cookie.
+- cy.setCookie('token', '12345');
+
+cy.getCookie(name): Obtém o valor de um cookie.
+- cy.getCookie('token').should('have.property', 'value', '12345');
+
+cy.clearCookie(name): Limpa um cookie específico.
+- cy.clearCookie('token');
+
+cy.clearCookies(): Limpa todos os cookies.
+- cy.clearCookies();
+
+
+9*** Comandos de Sessão
+cy.session(): Manipula sessões, permitindo que você crie ou limpe uma sessão de usuário.
+- cy.session('user-session', () => {
+  cy.visit('/login');
+  cy.get('input[name="username"]').type('user');
+  cy.get('input[name="password"]').type('password');
+  cy.get('button[type="submit"]').click();
+});
+
+
+esses são os principais comandos do cypress
+
+
+
+.should("be.equal", "Título Esperado")
+
+    Esse é um assert (uma verificação).
+
+    Ele está dizendo: o título da página DEVE SER IGUAL ao texto que você vai colocar entre aspas, 
+    por exemplo "Login | Meu Site".
+
+
+
+
+
+
+    commits
+    O que você fez	Exemplo de mensagem
+Primeiro commit	                        git commit -m "Initial commit"
+Adicionou a estrutura do projeto	    git commit -m "chore: project structure"
+Criou a página de login	                git commit -m "feat: add login page"
+Corrigiu um erro de layout	            git commit -m "fix: fix layout bug"
+Atualizou o README	                    git commit -m "docs: update README"
