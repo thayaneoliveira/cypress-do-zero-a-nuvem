@@ -157,6 +157,11 @@ esses são os principais comandos do cypress
     por exemplo "Login | Meu Site".
 
 
+O cy.get() é um comando fundamental no Cypress usado para selecionar 
+elementos do DOM com base em um seletor CSS. Ele funciona de forma parecida
+ com o document.querySelectorAll() do JavaScript, mas retorna um objeto Cypress
+  para que você possa encadear outros comandos.
+
 
 
 
@@ -168,3 +173,8 @@ Adicionou a estrutura do projeto	    git commit -m "chore: project structure"
 Criou a página de login	                git commit -m "feat: add login page"
 Corrigiu um erro de layout	            git commit -m "fix: fix layout bug"
 Atualizou o README	                    git commit -m "docs: update README"
+
+
+
+
+ .only, o Cypress (ou Mocha) vai rodar somente esse teste, ignorando todos os outros.
