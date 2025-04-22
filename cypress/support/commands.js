@@ -1,25 +1,28 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+//comando customizado
+
+// Cypress.Commands.add("fillMandatoryFieldsAndSubmit", (data) => {
+//   cy.get("#firstName").type("Thayane");
+//   cy.get("#lastName").type("Oliveira");
+//   cy.get("#email").type("thayane520.biel@gmail.com");
+//   cy.get("#open-text-area").type("teste");
+//   cy.get('button[type="submit"]').click();
+// });
+
+//  se o resultado for defaul ele já tras esses cmpos preenchidos
+Cypress.Commands.add(
+  "fillMandatoryFieldsAndSubmit",
+  (
+    data = {
+      firsName: "thay",
+      lastName: "Oliveira",
+      email: "thayane520.biel@gmail.com",
+      text: "Teste.",
+    }
+  ) => {
+    cy.get("#firstName").type("Thayane");
+    cy.get("#lastName").type("Oliveira");
+    cy.get("#email").type("thayane520.biel@gmail.com");
+    cy.get("#open-text-area").type("teste");
+    cy.contains("button", "Enviar").click();
+  }
+);

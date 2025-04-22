@@ -17,8 +17,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get("#email").type("thayane520.biel@gmail.com");
     cy.get("#phone").type(984240118);
     cy.get("#open-text-area").type(longText, { delay: 0 }); //usando a const Cypress
-    cy.get('button[type="submit"]').click();
-
+    cy.contains("button", "Enviar").click();
     cy.get(".success").should("be.visible");
   });
 
@@ -28,8 +27,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get("#email").type("thayane520.biel@gmail,com");
     cy.get("#phone").type(984240118);
     cy.get("#open-text-area").type("teste");
-    cy.get('button[type="submit"]').click();
-
+    cy.contains("button", "Enviar").click();
     cy.get(".error").should("be.visible");
   });
 
@@ -43,8 +41,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get("#email").type("thayane520.biel@gmail.com");
     cy.get("#open-text-area").type("teste");
     cy.get("#phone-checkbox").click();
-    cy.get('button[type="submit"]').click();
-
+    cy.contains("button", "Enviar").click();
     cy.get(".error").should("be.visible");
   });
 
@@ -71,14 +68,44 @@ describe("Central de Atendimento ao Cliente TAT", () => {
       .should("have.value", "");
   });
 
-  it.only("exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", () => {
+  it("exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", () => {
     // cy.get("#firstName").type("");
     cy.get("#lastName").type("Oliveira");
     cy.get("#email").type("thayane520.biel@gmail,com");
     cy.get("#phone").type(984240118);
     cy.get("#open-text-area").type("teste");
-    cy.get('button[type="submit"]').click();
-
+    cy.contains("button", "Enviar").click();
     cy.get(".error").should("be.visible");
+  });
+
+  // it("envia o formuário com sucesso usando um comando customizado", () => {
+  //   cy.fillMandatoryFieldsAndSubmit(); // comando customizado
+
+  //   cy.get(".success").should("be.visible");
+  // });
+
+  it("envia o formuário com sucesso usando um comando customizado", () => {
+    const data = {
+      firsName: "thay",
+      lastName: "Oliveira",
+      email: "thayane520.biel@gmail.com",
+      text: "Teste.",
+    };
+    cy.fillMandatoryFieldsAndSubmit(data);
+
+    cy.get(".success").should("be.visible");
+  });
+
+  it("seleciona um produto (YouTube) por seu texto", () => {
+    //para clicar no seletor e selecionar
+    cy.get("#product").select("YouTube").should("have.value", "youtube");
+  });
+
+  it("seleciona um produto (Mentoria) por seu valor (value)", () => {
+    cy.get("#product").select("mentoria").should("have.value", "mentoria");
+  });
+
+  it.only("seleciona um produto (Blog) por seu índice", () => {
+    cy.get("#product").select(1).should("have.value", "blog");
   });
 });
