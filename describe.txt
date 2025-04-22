@@ -178,3 +178,7 @@ Atualizou o README	                    git commit -m "docs: update README"
 
 
  .only, o Cypress (ou Mocha) vai rodar somente esse teste, ignorando todos os outros.
+
+
+
+ 
