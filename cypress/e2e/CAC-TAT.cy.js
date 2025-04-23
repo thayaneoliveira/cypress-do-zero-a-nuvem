@@ -1,5 +1,5 @@
 describe("Central de Atendimento ao Cliente TAT", () => {
-  //antes de casa teste esse beforeEach é executado
+  //antes de cada teste esse beforeEach é executado
   beforeEach(() => {
     cy.visit("./src/index.html");
   });
@@ -160,11 +160,13 @@ describe("Central de Atendimento ao Cliente TAT", () => {
       .and("have.attr", "target", "_blank");
   });
 
-  it.only("acessa a página da política de privacidade removendo o target e então clicando no link", () => {
+  it("acessa a página da política de privacidade removendo o target e então clicando no link", () => {
     cy.contains("a", "Política de Privacidade")
       .invoke("removeAttr", "target")
       .click();
 
-    cy.contains("h1", "CAC TAT - Política de Privacidade");
+    cy.contains("h1", "CAC TAT - Política de Privacidade").should("be.visible");
   });
+
+  it("testa a página da política de privacidade de forma independente", () => {});
 });
