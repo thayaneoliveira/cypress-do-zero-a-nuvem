@@ -179,6 +179,23 @@ Atualizou o README	                    git commit -m "docs: update README"
 
  .only, o Cypress (ou Mocha) vai rodar somente esse teste, ignorando todos os outros.
 
+comando no package.json rodar mobile
+"cy:open:mobile": "cypress open --config viewportWidth=410 viewportHeight=860",
+ "test:mobile": "cypress run --config viewportWidth=410 viewportHeight=860"
+
+ para criar video
+ config 
+ const { defineConfig } = require("cypress");
+
+module.exports = defineConfig({
+  viewportHeight: 880,
+  viewportWidth: 1280,
+  e2e: {},
+  video: true,
+});
+
+comadno para abrir open cypress/videos/
+
 
 
  

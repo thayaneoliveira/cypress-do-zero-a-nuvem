@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe("Central de Atendimento ao Cliente TAT", () => {
   //antes de cada teste esse beforeEach é executado
   beforeEach(() => {
